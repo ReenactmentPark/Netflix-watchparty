@@ -1,46 +1,42 @@
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <style>
     body {
       background: transparent;
       color: white;
-      font-family: monospace;
-      text-align: center;
-      margin: 0;
-      padding: 10px;
-    }
-    #timer {
-      font-size: 36px;
-      line-height: 1.2;
-    }
-    .title {
-      font-size: 18px;
-      margin-top: 8px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      font-family: 'Courier New', monospace;
+      font-size: 24px;
     }
   </style>
 </head>
 <body>
-  <div id="timer">--:-- / --:--</div>
-  <div class="title">타이틀 대기 중...</div>
+  <div id="time">00:00 / 00:00</div>
+  <div id="title">제목 없음</div>
+
   <script>
-    async function fetchTimer() {
-      const res = await fetch('/current');
-      const d = await res.json();
-      const f = s => {
-        const m = Math.floor(s / 60).toString().padStart(2,'0');
-        const ss = Math.floor(s % 60).toString().padStart(2,'0');
-        return `${m}:${ss}`;
-      };
-      document.getElementById('timer').innerText = `${f(d.currentTime)} / ${f(d.duration)}`;
-      document.querySelector('.title').innerText = d.title || '제목 없음';
+    async function fetchTime() {
+      try {
+        const res = await fetch('https://https://netflix-watchparty-production-6a61.up.railway.app/current');
+        const data = await res.json();
+
+        const timeDisplay = document.getElementById('time');
+        const titleDisplay = document.getElementById('title');
+
+        if (!data.currentTime || !data.duration) {
+          timeDisplay.textContent = '00:00 / 00:00';
+          return;
+        }
+
+        timeDisplay.textContent = `${data.currentTime} / ${data.duration}`;
+        titleDisplay.textContent = data.title || '제목 없음';
+      } catch (err) {
+        console.error('Fetch 오류:', err);
+      }
     }
-    setInterval(fetchTimer, 500);
-    fetchTimer();
+
+    setInterval(fetchTime, 1000);
   </script>
 </body>
 </html>
