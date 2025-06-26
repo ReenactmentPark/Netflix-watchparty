@@ -3,49 +3,26 @@
 <head>
   <meta charset="UTF-8" />
   <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      background: transparent;
-    }
-
     body {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
+      margin: 0;
+      background: transparent;
       font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
       color: white;
     }
 
     #timer-box {
-      background-color: rgba(0, 0, 0, 0.3);
+      font-size: 120px; /* 폰트 5배 수준 */
+      background: rgba(0, 0, 0, 0.3); /* 반투명 검정 배경 */
       padding: 20px 40px;
-      border-radius: 10px;
-      margin-bottom: 10px;
-    }
-
-    #timer {
-      font-size: 200px;
-      font-weight: bold;
-      text-align: center;
-    }
-
-    .title {
-      font-size: 32px;
-      color: white;
-      text-align: center;
-      max-width: 100%;
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
+      border-radius: 12px;
+      display: inline-block;
     }
   </style>
 </head>
 <body>
-  <div id="time">로딩 중...</div>
-
+  <div id="timer-box">
+    <div id="time">로딩 중...</div>
+  </div>
   <script>
     async function fetchTime() {
       try {
