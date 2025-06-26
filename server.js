@@ -1,3 +1,4 @@
+console.log('✅ 최신 server.js 적용됨');
 const express = require('express');
 const cors = require('cors');
 const fs = require('fs');
