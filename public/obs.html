@@ -11,17 +11,30 @@
     }
 
     #timer-box {
-      font-size: 120px; /* 폰트 5배 수준 */
-      background: rgba(0, 0, 0, 0.3); /* 반투명 검정 배경 */
+      background: rgba(0, 0, 0, 0.3);
       padding: 20px 40px;
       border-radius: 12px;
-      display: inline-block;
+      display: inline-flex;
+      align-items: flex-end;
+      gap: 12px;
+    }
+
+    #current {
+      font-size: 120px;
+      font-weight: 800;
+    }
+
+    #duration {
+      font-size: 60px;
+      font-weight: 400;
+      margin-bottom: 12px;
     }
   </style>
 </head>
 <body>
   <div id="timer-box">
-    <div id="time">로딩 중...</div>
+    <div id="current">--:--</div>
+    <div id="duration">/ --:--</div>
   </div>
   <script>
     async function fetchTime() {
@@ -31,13 +44,10 @@
 
         console.log('[서버 응답]', data);
 
-        const timeDisplay = document.getElementById('time');
-
         if (data.currentTime && data.duration) {
-          timeDisplay.textContent = `${data.currentTime} / ${data.duration}`;
-        } else {
-          timeDisplay.textContent = '시간 없음';
-        }
+          document.getElementById('current').innerText = d.currentTime;
+          document.getElementById('duration').innerText = `/ ${d.duration}`;
+        } 
       } catch (err) {
         console.error('fetch 오류:', err);
       }
