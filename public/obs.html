@@ -3,41 +3,43 @@
 <head>
   <meta charset="UTF-8" />
   <style>
-    body {
+    html, body {
       margin: 0;
-      font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
-      color: white;
+      padding: 0;
       background: transparent;
     }
 
-    #timer-box {
-      display: inline-block;
-      background-color: rgba(0, 0, 0, 0.3);
-      padding: 10px 20px;
-      border-radius: 8px;
-    }
-
-    #timer {
-      font-size: 240px;
-      font-weight: 700;
-      text-align: center;
-    }
-
-    .title {
-      font-size: 24px;
-      margin-top: 12px;
-      text-align: center;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .container {
+    body {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       height: 100vh;
+      font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+      color: white;
+    }
+
+    #timer-box {
+      background-color: rgba(0, 0, 0, 0.3);
+      padding: 20px 40px;
+      border-radius: 10px;
+      margin-bottom: 10px;
+    }
+
+    #timer {
+      font-size: 200px;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .title {
+      font-size: 32px;
+      color: white;
+      text-align: center;
+      max-width: 100%;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
     }
   </style>
 </head>
