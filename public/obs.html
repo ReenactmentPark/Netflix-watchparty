@@ -10,6 +10,17 @@
       color: white;
     }
 
+    /* 영상 제목 */
+    #video-title {
+      font-size: 24px;
+      font-weight: 500;
+      text-align: center;
+      margin-bottom: 8px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
     #timer-box {
       background: rgba(0, 0, 0, 0.5);
       padding: 20px 40px;
@@ -32,10 +43,14 @@
   </style>
 </head>
 <body>
+  <!-- 여기 제목을 띄웁니다 -->
+  <div id="video-title">--</div>
+
   <div id="timer-box">
     <div id="current">--:--</div>
     <div id="duration">/ --:--</div>
   </div>
+
   <script>
     async function fetchTime() {
       try {
@@ -44,15 +59,22 @@
 
         console.log('[서버 응답]', data);
 
+        // 타이머 갱신
         if (data.currentTime && data.duration) {
           document.getElementById('current').innerText = data.currentTime;
           document.getElementById('duration').innerText = `/ ${data.duration}`;
-        } 
+        }
+
+        // 제목 갱신 (없으면 그대로 두거나 '--' 유지)
+        if (data.title) {
+          document.getElementById('video-title').innerText = data.title;
+        }
       } catch (err) {
         console.error('fetch 오류:', err);
       }
     }
 
+    // 250ms 간격으로 주기 갱신
     setInterval(fetchTime, 250);
   </script>
 </body>
